@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -39,8 +40,9 @@ class MainActivity : ComponentActivity() {
                         composable(route = "pedidos") {
                             PedidosScreen(navController)
                         }
-                        composable(route = "perfil") {
-                            PerfilScreen(navController)
+                        composable(route = "perfil/{nome}") {
+                            val nome = it.arguments?.getString("nome")
+                            PerfilScreen(navController, nome!!)
                         }
                     }
                 }
